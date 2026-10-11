@@ -1,0 +1,39 @@
+name: Deploy a InfinityFree
+
+# Se ejecuta al subir cambios a main, o a mano desde la pestaña Actions
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar el código
+        uses: actions/checkout@v4
+
+      - name: Instalar lftp
+        run: sudo apt-get update && sudo apt-get install -y lftp
+
+      - name: Subir archivos por FTP
+        env:
+          FTP_HOST: ${{ secrets.INFINITYFREE_FTP_HOST }}
+          FTP_USER: ${{ secrets.INFINITYFREE_FTP_USERNAME }}
+          FTP_PASS: ${{ secrets.INFINITYFREE_FTP_PASSWORD }}
+          FTP_REMOTE_DIR: ${{ secrets.INFINITYFREE_REMOTE_DIR }}
+        run: |
+          # Sin --delete: lo que ya está en el servidor (por ejemplo smtp_config.php) se conserva
+          lftp -u "$FTP_USER","$FTP_PASS" "$FTP_HOST" <<EOF
+          set ftp:ssl-allow yes
+          set ssl:verify-certificate no
+          set net:max-retries 3
+          mirror --reverse --only-newer --no-perms --verbose \
+            --exclude=^\.git/ \
+            --exclude=^\.github/ \
+            --exclude=^\.gitignore$ \
+            --exclude=^CLAUDE\.md$ \
+            --exclude=^controllers/smtp_config\.php$ \
+            ./ "$FTP_REMOTE_DIR"
+          bye
+          EOF
