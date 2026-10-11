@@ -33,6 +33,9 @@ jobs:
             --exclude=^\.github/ \
             --exclude=^\.gitignore$ \
             --exclude=^CLAUDE\.md$ \
+            --exclude=^MEMORY\.md$ \
+            --exclude=^Constitution\.md$ \
+            --exclude=^specs/ \
             --exclude=^controllers/smtp_config\.php$ \
             ./ "$FTP_REMOTE_DIR"
           bye

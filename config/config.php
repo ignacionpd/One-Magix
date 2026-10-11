@@ -31,7 +31,7 @@ define('BASE_URL', rtrim(str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'])
 
 // --- Datos del sitio ---
 define('SITIO_NOMBRE', 'One Magix | Eventos & Experiencias');
-define('SITIO_DESCRIPCION', 'One Magix organiza casamientos, cumpleaños de 15 y eventos inolvidables en Argentina.');
+define('SITIO_DESCRIPCION', 'One Magix organiza casamientos, cumpleaños de 15 y eventos inolvidables en San Miguel.');
 
 // --- Datos de contacto (se muestran en el footer) ---
 define('CONTACTO_WHATSAPP', '5491133832145');        // Código de país + área + número, sin espacios ni "+"
