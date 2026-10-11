@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Qué es
 
-Web "One Magix | Eventos & Experiencias": una sola página en PHP/HTML/CSS/JS sin framework ni build. Corre en XAMPP (`C:\xampp\htdocs\PROYECTOS\One Magix`). Todo el texto de la interfaz va en español.
+Web "One Magix | Eventos & Experiencias": una sola página en PHP/HTML/CSS/JS sin framework ni build. Corre en XAMPP (`C:\xampp\htdocs\PROYECTOS\One Magix`).
 
 ## Comandos
 
@@ -20,7 +20,7 @@ No hay build, linter ni tests automáticos. Para probar:
 - `index.php` es el único punto de entrada. Define `ONEMAGIX` (los demás PHP hacen `defined('ONEMAGIX') or exit`), carga `config/config.php` y decide: POST de contacto (`?accion=contacto` → `controllers/ContactoController.php`, responde JSON), páginas de error (`?error=403|404`, enviadas por los `.htaccess`) o la portada, que incluye en orden `views/secciones/{inicio,galeria,nosotros,promociones,faq,contacto}.php` entre `views/layout/header.php` y `footer.php`.
 - `config/config.php` centraliza constantes (WhatsApp, ubicación, redes, `MODO_DESARROLLO`), `BASE_URL` (calculada desde `SCRIPT_NAME`, por eso todos los assets usan `<?= BASE_URL ?>`), `e()` para escapar y `menu_enlaces()` (fuente única del menú de header y footer). Header y footer calculan sus propias variables (`$prefijo`, `$enlaceWhatsapp`) para no depender de otros archivos.
 - El formulario valida dos veces con las mismas reglas y mensajes: `iniciarFormulario()` en `assets/js/main.js` y `ContactoController.php`. Cualquier cambio de regla se hace en ambos. El envío usa PHPMailer (`controllers/phpmailer/`) con datos de `controllers/smtp_config.php`, hoy con valores de ejemplo: el envío real no está probado.
-- Los `.htaccess` (raíz, `config/`, `controllers/`, `views/`) bloquean el acceso directo y mapean errores a `index.php?error=`.
+- Cada push a `main` publica el sitio en InfinityFree (`.github/workflows/deploy-infinityfree.yml`; no sube `smtp_config.php`, que está en `.gitignore` y se coloca a mano en el servidor). Los `.htaccess` (raíz, `config/`, `controllers/`, `views/`) bloquean el acceso directo y mapean errores a `index.php?error=`.
 
 ## Front-end
 
@@ -30,7 +30,11 @@ No hay build, linter ni tests automáticos. Para probar:
 - Carrusel: propio (sin librería), imágenes 4:5 posicionadas en círculo con `--pos` calculado en `iniciarCarrusel()`; el tamaño sale de `--ancho-diapositiva` (500px en escritorio, 400px en tablet, 270px en móvil chico).
 - El video de Nosotros es vertical (9:16): arranca solo y en silencio (`autoplay muted`), con controles para activar el sonido.
 
-## Pautas del usuario
+## Reglas de trabajo
 
-- Antes de avisar, probar en móvil, tablet y escritorio y verificar que no haya errores; no cambiar lo que ya funciona ni hacer cambios grandes sin consultar.
-- No agregar nada que no se haya pedido.
+- Hacer solo lo pedido: sin funcionalidades, dependencias, frameworks ni pasos de build por cuenta propia.
+- No cambiar lo que ya funciona; cambios pequeños y enfocados. Preguntar antes de crear archivos nuevos o hacer modificaciones importantes.
+- Probar en móvil, tablet y escritorio, sin errores, antes de avisar. Al terminar, resumir qué cambió y qué decisiones hay que revisar.
+- Interfaz en español, hora de Argentina, diseño limpio y responsive (el móvil debe verse bien).
+- Código simple, nombres descriptivos, comentarios solo donde aporten.
+- Datos sensibles (como `smtp_config.php`) nunca a GitHub.
