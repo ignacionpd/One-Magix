@@ -53,9 +53,12 @@ $enlaceWhatsapp = 'https://wa.me/' . CONTACTO_WHATSAPP;
         </div>
     </div>
 
-    <p class="footer__derechos">
-        &copy; <?= date('Y') ?> One Magix. Todos los derechos reservados.
-    </p>
+    <div class="footer__derechos">
+        <span>&copy; <?= date('Y') ?> One Magix. Todos los derechos reservados.</span>
+        <a href="https://iprieto.freedev.app" target="_blank" rel="noopener" class="footer__credito" aria-label="Diseñado por Ignacio Prieto (se abre en una pestaña nueva)">
+            Diseñado por <img src="<?= BASE_URL ?>assets/images/ip-logo.png" alt="Ignacio Prieto">
+        </a>
+    </div>
 </footer>
 
 <!-- Librerías de animación cargadas por CDN (sin instalar nada) -->
