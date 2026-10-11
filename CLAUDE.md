@@ -30,11 +30,11 @@ No hay build, linter ni tests automáticos. Para probar:
 - Carrusel: propio (sin librería), imágenes 4:5 posicionadas en círculo con `--pos` calculado en `iniciarCarrusel()`; el tamaño sale de `--ancho-diapositiva` (500px en escritorio, 400px en tablet, 270px en móvil chico).
 - El video de Nosotros es vertical (9:16): arranca solo y en silencio (`autoplay muted`), con controles para activar el sonido.
 
-## Reglas de trabajo
+## Memoria y reglas
 
-- Hacer solo lo pedido: sin funcionalidades, dependencias, frameworks ni pasos de build por cuenta propia.
-- No cambiar lo que ya funciona; cambios pequeños y enfocados. Preguntar antes de crear archivos nuevos o hacer modificaciones importantes.
-- Probar en móvil, tablet y escritorio, sin errores, antes de avisar. Al terminar, resumir qué cambió y qué decisiones hay que revisar.
-- Interfaz en español, hora de Argentina, diseño limpio y responsive (el móvil debe verse bien).
-- Código simple, nombres descriptivos, comentarios solo donde aporten.
-- Datos sensibles (como `smtp_config.php`) nunca a GitHub.
+@Constitution.md
+@MEMORY.md
+
+- Al empezar, leer `Constitution.md` (reglas permanentes) y `MEMORY.md` (estado y decisiones).
+- Las tareas grandes tienen su spec en `specs/<tema>/spec.md`.
+- Al terminar una tarea, actualizar `MEMORY.md` (máximo ~50 líneas; sin claves, tokens ni datos personales).
