@@ -27,7 +27,7 @@ No hay build, linter ni tests automáticos. Para probar:
 - Las imágenes de galería, flyers y el video (`assets/images/galeria`, `assets/images/flyers`, `assets/video`) los carga el usuario en su equipo; no están en este repositorio.
 - Animación al hacer scroll: `[data-animar]` (+ `izquierda`/`derecha`) dentro de `.animar-scroll`; `animarAlHacerScroll()` en `animaciones.js` usa IntersectionObserver para alternar `.visible`. Un intento anterior con GSAP ScrollTrigger fallaba al redimensionar: no volver a usarlo. GSAP solo anima la entrada de la portada. `.seccion` tiene `overflow-x: clip` para evitar scroll horizontal por los desplazamientos ocultos.
 - Fondo de la portada: Vanta NET por defecto (`EFECTO_PORTADA`); se puede probar `?efecto=red|ondas|niebla|destellos`. GSAP, three y Vanta se cargan por CDN al final del footer, antes de `main.js` y `animaciones.js`.
-- Carrusel: propio (sin librería), imágenes 4:5 posicionadas en círculo con `--pos` calculado en `iniciarCarrusel()`; el tamaño sale de `--ancho-diapositiva` (400px, 270px en móvil chico).
+- Carrusel: propio (sin librería), imágenes 4:5 posicionadas en círculo con `--pos` calculado en `iniciarCarrusel()`; el tamaño sale de `--ancho-diapositiva` (500px en escritorio, 400px en tablet, 270px en móvil chico).
 - El video de Nosotros es vertical (9:16): arranca solo y en silencio (`autoplay muted`), con controles para activar el sonido.
 
 ## Pautas del usuario
