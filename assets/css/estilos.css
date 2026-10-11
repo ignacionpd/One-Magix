@@ -764,6 +764,7 @@ ul {
 }
 
 .footer__derechos {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -786,13 +787,30 @@ ul {
 }
 
 .footer__credito img {
-    height: 24px;
+    height: 17px;
     width: auto;
 }
 
 .footer__credito:hover,
 .footer__credito:focus-visible {
     opacity: 1;
+}
+
+/* Escritorio: el crédito va pegado a la esquina derecha */
+@media (min-width: 901px) {
+    .footer__credito {
+        position: absolute;
+        top: 50%;
+        right: 24px;
+        transform: translateY(-50%);
+    }
+}
+
+/* Móvil: más aire entre la línea de arriba y el texto */
+@media (max-width: 600px) {
+    .footer__derechos {
+        padding-top: 32px;
+    }
 }
 
 /* ==========================================================
