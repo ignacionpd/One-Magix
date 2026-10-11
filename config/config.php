@@ -7,6 +7,11 @@
 // Evita que este archivo se abra directamente.
 defined('ONEMAGIX') or exit('Acceso no permitido');
 
+// --- Zona horaria ---
+// Toda la web (fechas del footer, hora de los correos, etc.) usa la hora de Argentina,
+// sin importar dónde esté el servidor.
+date_default_timezone_set('America/Argentina/Buenos_Aires');
+
 // --- Modo desarrollo ---
 // true  = muestra los errores de PHP en pantalla (para programar en tu PC).
 // false = los oculta (usalo cuando la web esté publicada).
